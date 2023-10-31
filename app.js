@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
+const { userAuth, userPerms } = require('./middleware/user-auth');
+const homeRouter = require("./routes/home");
+
+app.use('/user', userAuth, userPerms);
 
 app.disable('x-powered-by');
 
@@ -9,24 +13,25 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    console.log("nuova richiesta get");
+    console.log("nuova richiesta post");
     res.send("<h1>Benvenuto POST</h1>");
 });
 
 app.put('/', (req, res) => {
-    console.log("nuova richiesta get");
+    console.log("nuova richiesta put");
     res.send("<h1>Benvenuto PUT</h1>");
 });
 
+app.patch('/', (req, res) => {
+    console.log("nuova richiesta patch");
+    res.send("<h1>Benvenuto PATCH</h1>");
+});
+
 app.delete('/', (req, res) => {
-    console.log("nuova richiesta get");
+    console.log("nuova richiesta delete");
     res.send("<h1>Benvenuto DELETE</h1>");
 });
 
-app.patch('/', (req, res) => {
-    console.log("nuova richiesta get");
-    res.send("<h1>Benvenuto PATCH</h1>");
-});
 
 // se vogliamo definire una rotta con qualsiasi tipo di chiamata rest
 app.all('/', (req, res) => {
@@ -47,18 +52,5 @@ app.get(['/blog', '/admin[0-6]{2,}'], (req, res) => {
 app.get('/user/risorsa-premium', checkAuthentication, checkAuthorization, (req, res) => {
     res.send("Ecco la risorsa premium");
 });
-// chech authentication
-function checkAuthentication(req, res, next) {
-    const isLogged = false;
-    if (!isLogged) return res.status(401).send("non sei autenticato");
-    req.user = { nome: 'Sara', tipo: 'standard' };
-    next();
-}
-// chech authorization
-function checkAuthorization(req, res, next) {
-    const isAuthorized = req.user.tipo === "Premium" ? true : false;
-    if (!isAuthorized) return res.status(403).send("non sei autorizzato");
-    next();
-}
 
 app.listen(3000);

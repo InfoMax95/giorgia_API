@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send("pagina home");
-
+router.get('/404', (req, res) => {
+    res.send("pagina 404");
 });
 
 module.exports = router;

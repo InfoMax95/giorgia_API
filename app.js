@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 
 const appError = require("./middleware/error");
 const home = require("./routes/home");
@@ -8,13 +7,17 @@ const blog = require("./routes/blog");
 const user = require("./routes/user");
 const _404 = require("./routes/_404");
 
-app.use(appError);
+const app = express();
+app.set("view engine", "ejs");
+
 app.use(express.static("public"));
 app.use('/user', user);
 app.use(home);
 app.use(blog);
 app.use(contatti);
 app.use(_404);
+app.use(appError);
 // app.disable('x-powered-by');
 
-app.listen(3000);
+const port = 3000;
+app.listen(port, console.log(`the server is listening at port ${port}`));

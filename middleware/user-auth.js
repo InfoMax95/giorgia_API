@@ -5,6 +5,7 @@ function userAuth(req, res, next) {
     req.user = { nome: 'Sara', tipo: 'standard' };
     next();
 }
+
 // chech authorization
 function userPerms(req, res, next) {
     const isAuthorized = req.user.tipo === "Premium" ? true : false;

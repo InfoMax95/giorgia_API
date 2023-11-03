@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %>></title>
+</head>
+<body>
+    <header>
+       <nav>
+        <ul>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 2</a></li>
+            <li><a href="#">link 3</a></li>
+        </ul>
+       </nav>
+    </header>
+    <main>
+        <% elencoArticoli.forEach(articolo => { %>
+            <article>
+                <h1><%= articolo.titolo %></h1>
+                <p><%= articolo.testo %></p>
+            </article>
+        <% }); %>
+    </main>
+    <footer>
+        <p>tutti i diritti sono riservati</p>
+    </footer>
+    
+</body>
+</html>

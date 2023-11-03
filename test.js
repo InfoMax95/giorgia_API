@@ -1,6 +1,16 @@
+require('dotenv').config();
+const morgan = require('morgan');
 const responseTime = require('response-time');
 const express = require('express');
 const app = express();
+
+console.log(process.env.DB_CONN_STRING);
+console.log(process.env.APP_PWD);
+
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'));
+};
+console.log(app.get('env'));
 
 // built-in middleware
 app.use(express.json()); // --> per passare json nel body

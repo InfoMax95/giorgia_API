@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %>></title>
+    <%- include('partials/head') %>
 </head>
 <body>
+
     <header>
-       <nav>
-        <ul>
-            <li><a href="#">link 1</a></li>
-            <li><a href="#">link 2</a></li>
-            <li><a href="#">link 3</a></li>
-        </ul>
-       </nav>
+        <%- include('partials/header') %>
     </header>
     <main>
         <% elencoArticoli.forEach(articolo => { %>
@@ -24,7 +17,7 @@
         <% }); %>
     </main>
     <footer>
-        <p>tutti i diritti sono riservati</p>
+        <%- include('partials/footer') %>
     </footer>
     
 </body>

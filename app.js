@@ -1,5 +1,6 @@
-const express = require('express');
+require('dotenv').config();
 
+const express = require('express');
 const appError = require("./middleware/error");
 const home = require("./routes/home");
 const contatti = require("./routes/contatti");
